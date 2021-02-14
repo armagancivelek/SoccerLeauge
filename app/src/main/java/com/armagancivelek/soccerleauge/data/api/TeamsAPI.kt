@@ -6,7 +6,6 @@ import retrofit2.http.GET
 
 interface TeamsAPI {
 
-
     @GET("armagancivelek/SoccerLeauge/main/teams.json")
     suspend fun getTeams(): Response<List<Team>>
 }

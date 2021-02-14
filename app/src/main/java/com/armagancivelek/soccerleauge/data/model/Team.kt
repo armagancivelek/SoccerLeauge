@@ -1,14 +1,16 @@
 package com.armagancivelek.soccerleauge.data.model
 
-import android.os.Parcelable
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
+import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "teams")
-@Parcelize
+
+@Entity(tableName = "table_teams")
 data class Team(
+    @SerializedName("id")
     @PrimaryKey(autoGenerate = true)
     val team_id: Int,
+    @SerializedName("team_name")
     val team_name: String
-) : Parcelable
+)
