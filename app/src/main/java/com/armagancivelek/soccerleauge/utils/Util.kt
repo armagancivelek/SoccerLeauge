@@ -74,6 +74,7 @@ fun showInternetDialog(context: Context) {
         })
         this.create().show()
     }
+}
 
 
     fun generateFixtureForDual(teamCount: Int) {
@@ -91,7 +92,7 @@ fun showInternetDialog(context: Context) {
         for (i in 0 until teamCount) {
             list.add(i)
         }
-        Collections.shuffle(list)
+        list.shuffle()
 
 
 
@@ -181,4 +182,3 @@ fun showInternetDialog(context: Context) {
     }
 
 
-}

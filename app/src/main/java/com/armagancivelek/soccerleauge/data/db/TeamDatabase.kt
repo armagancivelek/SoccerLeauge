@@ -4,15 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.armagancivelek.soccerleauge.data.model.Fixture
 import com.armagancivelek.soccerleauge.data.model.Team
 
 
 @Database(
-    entities = [Team::class],
+    entities = [Team::class, Fixture::class],
     version = 1,
     exportSchema = false
 )
-
 abstract class TeamDatabase : RoomDatabase() {
     abstract fun getTeamDao(): TeamDAO
 

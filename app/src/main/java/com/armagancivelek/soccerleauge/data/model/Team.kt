@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "table_teams")
 data class Team(
     @SerializedName("id")
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val team_id: Int,
     @SerializedName("team_name")
     val team_name: String
