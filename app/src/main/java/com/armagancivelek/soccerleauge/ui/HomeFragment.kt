@@ -35,7 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.btnFixture.setOnClickListener {
 
             if (localData.isNotEmpty()) {
-                if (mViewModel.generateFixture(localData.size))
+                if (mViewModel.createFixture(localData.size))
                     findNavController().navigate(R.id.action_homeFragment_to_fixtureFragment)
                 else
                     Toast.makeText(context, "OPPSS There is a problem", Toast.LENGTH_LONG).show()

@@ -7,12 +7,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "table_fixture")
 data class Fixture(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true) var uid: Int? = null,
     @ColumnInfo(name = "round_count")
-    val roundCount: Int,
+    var roundCount: Int? = null,
     @ColumnInfo(name = "home_team")
-    val homeTeam: Int,
+    var homeTeam: Int? = null,
     @ColumnInfo(name = "away_team")
-    val awayTeam: Int
+    var awayTeam: Int? = null,
+    @ColumnInfo(name = "pass_team")
+    var passTeam: Int? = null
 )
-

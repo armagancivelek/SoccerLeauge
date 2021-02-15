@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.armagancivelek.soccerleauge.data.model.Fixture
 import com.armagancivelek.soccerleauge.data.model.Team
 import com.armagancivelek.soccerleauge.repository.SoccerRepository
 import com.armagancivelek.soccerleauge.utils.NetworkResult
@@ -19,12 +20,12 @@ class SoccerViewModel(
 ) : ViewModel() {
 
 
+    var fixtureList = ArrayList<Fixture>()
     val teams: MutableLiveData<NetworkResult<List<Team>>> = MutableLiveData()
 
     init {
 
         getTeams()
-
 
     }
 
@@ -79,15 +80,36 @@ class SoccerViewModel(
 
     }
 
-    fun generateFixture(count: Int): Boolean {
+    fun createFixture(count: Int): Boolean {
 
-        if (count % 2 == 0)
-            generateFixtureForDual(count)
-        else
-            generateFixtureForSingle(count)
+        if (count % 2 == 0) {
+            fixtureList = generateFixtureForDual(count)
+        } else {
+            fixtureList = generateFixtureForSingle(count)
+
+        }
+
+        fixtureList.forEach {
+            println("A-> home:${it.homeTeam} - away:${it.awayTeam} - hafta:${it.roundCount} - pas :${it.passTeam}\n")
+
+        }
+
+
+        saveFixture(fixtureList)
+
 
 
         return true
+
+
+    }
+
+    fun saveFixture(fixtureList: ArrayList<Fixture>) = viewModelScope.launch {
+
+
+        repo.saveFixture(*fixtureList.toTypedArray())
+
+
     }
 
 

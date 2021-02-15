@@ -10,6 +10,7 @@ import android.net.ConnectivityManager.*
 import android.net.NetworkCapabilities.*
 import android.os.Build
 import android.provider.Settings
+import com.armagancivelek.soccerleauge.data.model.Fixture
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -77,16 +78,17 @@ fun showInternetDialog(context: Context) {
 }
 
 
-    fun generateFixtureForDual(teamCount: Int) {
+fun generateFixtureForDual(teamCount: Int): ArrayList<Fixture> {
+    val fixture = ArrayList<Fixture>()
 
 
-        //kaç round sonra lig tamamlanacak
-        val roundCount = teamCount - 1
-        //bir round da kaç maç var
-        val matchCountPerRound = teamCount / 2
+    //kaç round sonra lig tamamlanacak
+    val roundCount = teamCount - 1
+    //bir round da kaç maç var
+    val matchCountPerRound = teamCount / 2
 
 
-        var list = ArrayList<Int>()
+    var list = ArrayList<Int>()
 
         //Takım listesi oluşturuluyor
         for (i in 0 until teamCount) {
@@ -122,18 +124,22 @@ fun showInternetDialog(context: Context) {
             list = newList
 
         }
-    }
 
-    fun generateFixtureForSingle(teamCount: Int) {
-        val bayList = ArrayList<Int>()
-        val teamCount = teamCount + 1
-        //kaç round sonra lig tamamlanacak
-        val roundCount = teamCount - 1
-        //bir round da kaç maç var
-        val matchCountPerRound = teamCount / 2
+    return fixture
+}
 
-        var list = ArrayList<Int>()
-        //Takım listesi oluşturuluyor
+fun generateFixtureForSingle(teamCount: Int): ArrayList<Fixture> {
+    var fixtureList = ArrayList<Fixture>()
+
+    val bayList = ArrayList<Int>()
+    val teamCount = teamCount + 1
+    //kaç round sonra lig tamamlanacak
+    val roundCount = teamCount - 1
+    //bir round da kaç maç var
+    val matchCountPerRound = teamCount / 2
+
+    var list = ArrayList<Int>()
+    //Takım listesi oluşturuluyor
         for (i in 0 until teamCount) {
             list.add(i)
         }
@@ -142,7 +148,7 @@ fun showInternetDialog(context: Context) {
         val temp = teamCount - 1// eklediğimiz temp sayısını değişkende tutuyoruz
 
         for (i in 0 until roundCount) {
-            println("${i + 1}. round \n")
+            //   println("${i + 1}. round \n")
 
 
             for (j in 0 until matchCountPerRound) {
@@ -158,7 +164,15 @@ fun showInternetDialog(context: Context) {
                     continue
                 }
 
-                println("${list.get(firstIndex)} - ${list.get(secondIndex)} \n")
+                val fixtureInstance = Fixture()
+                fixtureInstance.apply {
+                    homeTeam = list.get(firstIndex)
+                    awayTeam = list.get(secondIndex)
+                    this.roundCount = i
+                }
+                fixtureList.add(fixtureInstance)
+
+                // println("${list.get(firstIndex)} - ${list.get(secondIndex)} \n")
 
             }
 
@@ -178,7 +192,13 @@ fun showInternetDialog(context: Context) {
 
         }
 
-
+    fixtureList.forEach {
+        it.passTeam = bayList.get(it.roundCount!!)
     }
+
+
+
+    return fixtureList
+}
 
 
