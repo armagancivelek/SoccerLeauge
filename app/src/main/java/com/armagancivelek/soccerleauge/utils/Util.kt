@@ -10,6 +10,8 @@ import android.net.ConnectivityManager.*
 import android.net.NetworkCapabilities.*
 import android.os.Build
 import android.provider.Settings
+import java.util.*
+import kotlin.collections.ArrayList
 
 fun isConnected(context: Context): Boolean {
 
@@ -71,6 +73,111 @@ fun showInternetDialog(context: Context) {
 
         })
         this.create().show()
+    }
+
+
+    fun generateFixtureForDual(teamCount: Int) {
+
+
+        //kaç round sonra lig tamamlanacak
+        val roundCount = teamCount - 1
+        //bir round da kaç maç var
+        val matchCountPerRound = teamCount / 2
+
+
+        var list = ArrayList<Int>()
+
+        //Takım listesi oluşturuluyor
+        for (i in 0 until teamCount) {
+            list.add(i)
+        }
+        Collections.shuffle(list)
+
+
+
+        for (i in 0 until roundCount) {
+            println("${i + 1}. round \n")
+
+
+            for (j in 0 until matchCountPerRound) {
+                val firstIndex = j
+                val secondIndex = (teamCount - 1) - j
+                println("${list.get(firstIndex)} - ${list.get(secondIndex)} \n")
+
+            }
+
+
+            val newList = ArrayList<Int>()
+
+
+            newList.add(list.get(0))
+            newList.add(list.get(list.size - 1))
+
+
+            for (k in 1 until list.size - 1) {
+                newList.add(list.get(k))
+            }
+
+            list = newList
+
+        }
+    }
+
+    fun generateFixtureForSingle(teamCount: Int) {
+        val bayList = ArrayList<Int>()
+        val teamCount = teamCount + 1
+        //kaç round sonra lig tamamlanacak
+        val roundCount = teamCount - 1
+        //bir round da kaç maç var
+        val matchCountPerRound = teamCount / 2
+
+        var list = ArrayList<Int>()
+        //Takım listesi oluşturuluyor
+        for (i in 0 until teamCount) {
+            list.add(i)
+        }
+        Collections.shuffle(list)// karıştırıyoruz
+
+        val temp = teamCount - 1// eklediğimiz temp sayısını değişkende tutuyoruz
+
+        for (i in 0 until roundCount) {
+            println("${i + 1}. round \n")
+
+
+            for (j in 0 until matchCountPerRound) {
+                val firstIndex = j
+                val secondIndex = (teamCount - 1) - j
+                if (temp == list.get(firstIndex)) {
+                    bayList.add(list.get(secondIndex))
+                    continue
+                }
+
+                if (temp == list.get(secondIndex)) {
+                    bayList.add(list.get(firstIndex))
+                    continue
+                }
+
+                println("${list.get(firstIndex)} - ${list.get(secondIndex)} \n")
+
+            }
+
+
+            val newList = ArrayList<Int>()
+
+
+            newList.add(list.get(0))
+            newList.add(list.get(list.size - 1))
+
+
+            for (k in 1 until list.size - 1) {
+                newList.add(list.get(k))
+            }
+
+            list = newList
+
+        }
+
+
     }
 
 
