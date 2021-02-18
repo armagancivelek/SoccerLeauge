@@ -20,5 +20,14 @@ interface TeamDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun saveFixture(vararg fixture: Fixture)
 
+    @Query("Select *FROM table_fixture")
+    fun getAllFixture(): LiveData<List<Fixture>>
+
+    @Query("DELETE FROM  table_fixture")
+    suspend fun deleteAllFixture()
+
+    @Query("SELECT *  FROM table_fixture WHERE round_count LIKE:roundCount")
+    fun getRoundList(roundCount: Int): LiveData<List<Fixture>>
+
 
 }

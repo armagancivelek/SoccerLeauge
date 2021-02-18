@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.armagancivelek.soccerleauge.R
@@ -35,9 +34,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.btnFixture.setOnClickListener {
 
             if (localData.isNotEmpty()) {
-                if (mViewModel.createFixture(localData.size))
-                    findNavController().navigate(R.id.action_homeFragment_to_fixtureFragment)
-                else
+                if (mViewModel.createFixture(localData.size)) {
+
+
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToFixtureFragment(localData.toTypedArray())
+
+                    findNavController().navigate(action)
+
+
+                } else
                     Toast.makeText(context, "OPPSS There is a problem", Toast.LENGTH_LONG).show()
 
 
@@ -48,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun observeLiveData() {
-        mViewModel.teams.observe(viewLifecycleOwner, Observer { response ->
+        mViewModel.teams.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
                     showButton()
@@ -66,7 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         })
-        mViewModel.getSavedTeams().observe(viewLifecycleOwner, Observer {
+        mViewModel.getSavedTeams().observe(viewLifecycleOwner, {
             localData = it
 
         })

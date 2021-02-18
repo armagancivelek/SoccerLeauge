@@ -19,4 +19,11 @@ class SoccerRepository(
     suspend fun saveFixture(vararg fixtures: Fixture) = db.getTeamDao().saveFixture(*fixtures)
 
 
+    fun getSavedFixture() = db.getTeamDao().getAllFixture()
+
+    suspend fun deleteAllFixture() = db.getTeamDao().deleteAllFixture()
+
+    fun getRoundList(roundCount: Int) = db.getTeamDao().getRoundList(roundCount)
+
+
 }

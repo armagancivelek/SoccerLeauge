@@ -27,7 +27,11 @@ class MainActivity : AppCompatActivity() {
         val viewModelProviderFactory = SoccerViewModelFactoryProvider(repo, application)
         mViewModel =
             ViewModelProvider(this, viewModelProviderFactory).get(SoccerViewModel::class.java)
-
+        mViewModel.deleteAllFixture()
 
     }
+
+
+
+
 }

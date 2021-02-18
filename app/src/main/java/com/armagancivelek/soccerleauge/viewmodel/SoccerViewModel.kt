@@ -48,7 +48,16 @@ class SoccerViewModel(
 
     }
 
+    fun deleteAllFixture() = viewModelScope.launch {
+
+        repo.deleteAllFixture()
+    }
+
+    fun getSavedFixture() = repo.getSavedFixture()
+
     fun getSavedTeams() = repo.getSavedTeams()
+
+    fun getRoundList(roundCount: Int) = repo.getRoundList(roundCount)
 
     private fun handleTeamsResponse(response: Response<List<Team>>): NetworkResult<List<Team>> {
 

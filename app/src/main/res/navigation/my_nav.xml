@@ -18,5 +18,10 @@
         android:id="@+id/fixtureFragment"
         android:name="com.armagancivelek.soccerleauge.ui.FixtureFragment"
         android:label="fragment_fixture"
-        tools:layout="@layout/fragment_fixture" />
+        tools:layout="@layout/fragment_fixture">
+
+        <argument
+            android:name="teamList"
+            app:argType="com.armagancivelek.soccerleauge.data.model.Team[]" />
+    </fragment>
 </navigation>
