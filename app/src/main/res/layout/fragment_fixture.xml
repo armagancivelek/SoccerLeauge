@@ -13,14 +13,15 @@
         android:id="@+id/fixture_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/tab_bar_color"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fixture_view_pager"
-        app:tabIndicatorColor="@color/bg_row"
+        app:tabIndicatorColor="@color/tab_text_indicator"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/red" />
+        app:tabSelectedTextColor="@color/tab_selected_text_color"
+        app:tabTextColor="@color/tab_text_color" />
 
 
     <androidx.viewpager.widget.ViewPager

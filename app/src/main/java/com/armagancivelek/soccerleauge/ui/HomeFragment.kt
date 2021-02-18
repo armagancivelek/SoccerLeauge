@@ -1,7 +1,6 @@
 package com.armagancivelek.soccerleauge.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -76,7 +75,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
         mViewModel.getSavedTeams().observe(viewLifecycleOwner, {
-            Log.d("ABC", "${it}")
             localData = it
 
         })
