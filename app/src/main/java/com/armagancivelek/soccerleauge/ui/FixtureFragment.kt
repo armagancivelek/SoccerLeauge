@@ -3,13 +3,13 @@ package com.armagancivelek.soccerleauge.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.armagancivelek.soccerleauge.R
 import com.armagancivelek.soccerleauge.adapter.FixtureAdapter
 import com.armagancivelek.soccerleauge.data.model.Fixture
 import com.armagancivelek.soccerleauge.databinding.FragmentFixtureBinding
 import com.armagancivelek.soccerleauge.viewmodel.SoccerViewModel
+import kotlinx.coroutines.*
 
 
 class FixtureFragment : Fragment(R.layout.fragment_fixture) {
@@ -17,6 +17,7 @@ class FixtureFragment : Fragment(R.layout.fragment_fixture) {
     private lateinit var _binding: FragmentFixtureBinding
     private lateinit var adapter: FixtureAdapter
     private val args: FixtureFragmentArgs by navArgs()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         init(view)
@@ -26,7 +27,15 @@ class FixtureFragment : Fragment(R.layout.fragment_fixture) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        observerLiveData()
+
+        GlobalScope.launch {
+            delay(3000)
+            withContext(Dispatchers.Main) {
+                observerLiveData()
+            }
+
+        }
+
 
     }
 
@@ -34,9 +43,9 @@ class FixtureFragment : Fragment(R.layout.fragment_fixture) {
     private fun observerLiveData() {
 
 
-        mViewModel.getSavedFixture().observe(viewLifecycleOwner, Observer {
+        mViewModel.getSavedFixture().observe(viewLifecycleOwner, {
 
-
+            _binding.animationView.visibility = View.GONE
             adapter.updateList(it as ArrayList<Fixture>)
         })
 

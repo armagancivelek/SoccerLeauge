@@ -9,12 +9,15 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
 
+
     >
 
 
     <LinearLayout
 
+
         android:background="@color/white"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -22,11 +25,11 @@
         android:weightSum="4">
 
         <ImageView
-
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:contentDescription="TODO"
             android:src="@drawable/ic_amblem" />
 
         <TextView
@@ -35,7 +38,6 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="3"
-            android:text="Galatasaray"
             android:textSize="30sp"
             android:textStyle="bold" />
 
