@@ -35,6 +35,8 @@ class FixtureFragment : Fragment(R.layout.fragment_fixture) {
 
 
         mViewModel.getSavedFixture().observe(viewLifecycleOwner, Observer {
+
+
             adapter.updateList(it as ArrayList<Fixture>)
         })
 

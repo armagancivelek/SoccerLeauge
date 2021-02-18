@@ -29,7 +29,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:tooltipText="Galatasaray" />
+             />
 
         <TextView
             android:layout_width="0dp"
@@ -49,8 +49,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:tooltipText="Fenerbahçe" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 

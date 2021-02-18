@@ -15,6 +15,7 @@
         android:layout_height="match_parent" />
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/tv_pass_team"
         android:layout_width="match_parent"
         android:layout_height="56dp"

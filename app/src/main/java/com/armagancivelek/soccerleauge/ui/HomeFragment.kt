@@ -1,6 +1,7 @@
 package com.armagancivelek.soccerleauge.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -34,6 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.btnFixture.setOnClickListener {
 
             if (localData.isNotEmpty()) {
+
                 if (mViewModel.createFixture(localData.size)) {
 
 
@@ -60,6 +62,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     showButton()
                     hideProgressBar()
                     response.let {
+
                         teamsAdapter.differ.submitList(response.data)
                     }
                 }
@@ -73,6 +76,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
         mViewModel.getSavedTeams().observe(viewLifecycleOwner, {
+            Log.d("ABC", "${it}")
             localData = it
 
         })

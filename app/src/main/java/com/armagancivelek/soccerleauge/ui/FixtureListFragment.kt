@@ -28,20 +28,32 @@ class FixtureListFragment(
 
     }
 
+    fun getMod(position: Int): Int {
+        if (teamList.size % 2 == 0) {
+            return position % (teamList.size - 1)
+        } else
+            return position % (teamList.size)
+    }
+
     private fun observerLiveData() {
 
 
-        mViewModel.getRoundList(position % (teamList.size)).observe(viewLifecycleOwner, {
+        mViewModel.getRoundList(getMod(position)).observe(viewLifecycleOwner, {
 
             if (it.isNotEmpty()) {
                 adapter1.run {
                     this.updateList(it as ArrayList<Fixture>, position)
                 }
-                _binding.tvPassTeam.run {
+                if (teamList.size % 2 != 0) {
+                    _binding.tvPassTeam.run {
 
-                    this.text =
-                        "Bay geçen takım :  ${teamList[it[position % it.size].passTeam!!].team_name}"
-                }
+                        this.text =
+                            "Bay geçen takım :  ${teamList[it[position % it.size].passTeam!!].team_name}"
+                        visibility = View.VISIBLE
+                    }
+                } else
+                    _binding.tvPassTeam.visibility = View.GONE
+
             }
 
 

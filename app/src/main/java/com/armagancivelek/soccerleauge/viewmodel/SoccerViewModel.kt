@@ -1,6 +1,7 @@
 package com.armagancivelek.soccerleauge.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -93,13 +94,17 @@ class SoccerViewModel(
 
         if (count % 2 == 0) {
             fixtureList = generateFixtureForDual(count)
+            Log.d("ABC", "fixturelist sizeeee çift : ${fixtureList.size}")
         } else {
             fixtureList = generateFixtureForSingle(count)
-
         }
+        Log.d("ABC", "ssa")
 
         fixtureList.forEach {
-            println("A-> home:${it.homeTeam} - away:${it.awayTeam} - hafta:${it.roundCount} - pas :${it.passTeam}\n")
+            Log.d(
+                "ABC",
+                "A-> home:${it.homeTeam} - away:${it.awayTeam} - hafta:${it.roundCount} - pas :${it.passTeam}\n"
+            )
 
         }
 

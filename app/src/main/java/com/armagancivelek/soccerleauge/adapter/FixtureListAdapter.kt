@@ -36,7 +36,10 @@ class FixtureListAdapter(
 
 
     fun updateList(newFixtureList: List<Fixture>, position: Int) {
-        halfCount = if (position >= 21) 2 else 1
+        if (teamList.size % 2 == 0)
+            halfCount = if (position >= teamList.size - 1) 2 else 1
+        else
+            halfCount = if (position >= teamList.size) 2 else 1
         fixtureList.clear()
         fixtureList.addAll(newFixtureList)
         notifyDataSetChanged()

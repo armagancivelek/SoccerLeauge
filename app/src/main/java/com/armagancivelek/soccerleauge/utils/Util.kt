@@ -79,7 +79,7 @@ fun showInternetDialog(context: Context) {
 
 
 fun generateFixtureForDual(teamCount: Int): ArrayList<Fixture> {
-    val fixture = ArrayList<Fixture>()
+    val fixtureList = ArrayList<Fixture>()
 
 
     //kaç round sonra lig tamamlanacak
@@ -94,18 +94,24 @@ fun generateFixtureForDual(teamCount: Int): ArrayList<Fixture> {
         for (i in 0 until teamCount) {
             list.add(i)
         }
-        list.shuffle()
+    Collections.shuffle(list)
 
 
 
         for (i in 0 until roundCount) {
-            println("${i + 1}. round \n")
 
 
             for (j in 0 until matchCountPerRound) {
                 val firstIndex = j
                 val secondIndex = (teamCount - 1) - j
-                println("${list.get(firstIndex)} - ${list.get(secondIndex)} \n")
+                val fixtureInstance = Fixture()
+                fixtureInstance.apply {
+                    homeTeam = list.get(firstIndex)
+                    awayTeam = list.get(secondIndex)
+                    this.roundCount = i
+                }
+                fixtureList.add(fixtureInstance)
+
 
             }
 
@@ -125,7 +131,7 @@ fun generateFixtureForDual(teamCount: Int): ArrayList<Fixture> {
 
         }
 
-    return fixture
+    return fixtureList
 }
 
 fun generateFixtureForSingle(teamCount: Int): ArrayList<Fixture> {
@@ -148,9 +154,6 @@ fun generateFixtureForSingle(teamCount: Int): ArrayList<Fixture> {
         val temp = teamCount - 1// eklediğimiz temp sayısını değişkende tutuyoruz
 
         for (i in 0 until roundCount) {
-            //   println("${i + 1}. round \n")
-
-
             for (j in 0 until matchCountPerRound) {
                 val firstIndex = j
                 val secondIndex = (teamCount - 1) - j
@@ -172,7 +175,6 @@ fun generateFixtureForSingle(teamCount: Int): ArrayList<Fixture> {
                 }
                 fixtureList.add(fixtureInstance)
 
-                // println("${list.get(firstIndex)} - ${list.get(secondIndex)} \n")
 
             }
 
