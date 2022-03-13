@@ -1,6 +1,6 @@
 # A project of Soccer Leauge
-Web servisten  futbol takımlarını alan, takım sayısına göre dinamik ve rastgele bir şekilde lig fikstürü oluşturan mini uygulama .
-### Kullanılan Teknolojiler :
+Mini application that receives football teams from the web service and creates league fixtures dynamically and randomly according to the number of teams.
+### Used technologies :
 * MVVM architecture
 * Room DB
 * Navigation componenet
